@@ -6,13 +6,13 @@ const { Pool } = pg;
 const connectionString = process.env.DATABASE_URL;
 
 export const db = new Pool({
-  allowExitOnIdle: true,
   connectionString,
+  allowExitOnIdle: true,
 });
 
 try {
-  await db.query('SELECT NOW()');
-  console.log('DATABASE CONNECTED');
+  await db.query('SELECT * FROM login.clients');
+  console.log("Database connected");
 } catch {
   console.log('Error connecting to the database');
 }
