@@ -4,8 +4,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node src/index.js",
+    "dev": "node --watch src src/index.js"
   },
   "keywords": [],
   "author": "ale02code",
@@ -14,9 +14,7 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "morgan": "^1.10.0",
     "pg": "^8.13.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.9"
   }
 }
