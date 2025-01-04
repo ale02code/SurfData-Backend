@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { PORT, ALLOWED_ORIGINS } from './config.js';
+// , ALLOWED_ORIGINS
+import { PORT } from './config.js';
 import userRoutes from "./routes/clients.routes.js";
 
 const app = express();
