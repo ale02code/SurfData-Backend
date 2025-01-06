@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import morgan from 'morgan';
 // , ALLOWED_ORIGINS 
 import { PORT } from './config.js';
 import userRoutes from "./routes/clients.routes.js";
@@ -17,6 +18,7 @@ const app = express();
 //     }
 // }));
 
+app.use(morgan('dev'));
 app.use(cors());
 
 app.use(express.json());
