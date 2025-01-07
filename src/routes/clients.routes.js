@@ -5,16 +5,16 @@ const router = Router();
 
 router.get("/clients", getClients);
 
-// router.get("/clients/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const { rows } = await pool.query('SELECT * FROM login.clients WHERE id = $1', [id]);
+router.get("/clients/:id", async (req, res) => {
+  const { id } = req.params;
+  const { rows } = await pool.query('SELECT * FROM login.clients WHERE id = $1', [id]);
 
 // If the client does not exist
-//   if (rows.length === 0) {
-//     return res.status(404).json({ message: "Client not found" });
-//   }
-//   res.json(rows[0]);
-// });
+  if (rows.length === 0) {
+    return res.status(404).json({ message: "Client not found" });
+  }
+  res.json(rows[0]);
+});
 
 // router.post("/clients", async (req, res) => {
 //   const data = req.body;
