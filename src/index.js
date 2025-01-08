@@ -22,6 +22,8 @@ app.use(morgan('dev'));
 app.use(cors());
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use(userRoutes);
 
 app.listen(PORT);

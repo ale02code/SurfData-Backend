@@ -1,64 +1,16 @@
 import { Router } from "express";
-import { getClients } from "../controllers/clients.controllers.js";
+// byCript
+import { getClients, createClient, checkingData } from "../controllers/clients.controllers.js";
 
 const router = Router();
 
 // getting all clients
 router.get("/clients", getClients);
 
-// checking if the client data is correct
-router.post("/clients/login", async (req, res) => {
-  const data = req.body;
-
-})
-
 // create a new client
-router.post("/clients", async (req, res) => {
-  const data = req.body;
-  const { rows } = await pool.query(
-    'INSERT INTO login.clients (name, password) VALUES ($1, $2) RETURNING *',
-    [data.name, data.password]);
+router.post("/clients", createClient);
 
-  res.json(rows[0]);
-});
-
-// router.get("/clients/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const { rows } = await pool.query('SELECT * FROM login.clients WHERE id = $1', [id]);
-
-// If the client does not exist
-//   if (rows.length === 0) {
-//     return res.status(404).json({ message: "Client not found" });
-//   }
-//   res.json(rows[0]);
-// });
-
-// router.delete("/clients/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const { rowCount } = await pool.query(
-//     'DELETE FROM login.clients WHERE id = $1',
-//     [id]);
-
-//   if (rowCount === 0) {
-//     return res.status(404).json({ message: "Client not found" });
-//   }
-
-//   res.sendStatus(204);
-// });
-
-// router.put("/clients/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const body = req.body;
-
-//   const { rows } = await pool.query(
-//     'UPDATE login.clients SET name = $1, password = $2 WHERE id = $3 RETURNING *',
-//     [body.name, body.password, id]);
-
-//   if (rows.length === 0) {
-//     return res.status(404).json({ message: "Client not found" });
-//   }
-
-//   res.json(rows[0]);
-// });
+// checking if the client data is correct
+router.post("/clients/login", checkingData);
 
 export default router;
