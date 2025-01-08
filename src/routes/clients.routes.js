@@ -3,25 +3,33 @@ import { getClients } from "../controllers/clients.controllers.js";
 
 const router = Router();
 
+// getting all clients
 router.get("/clients", getClients);
 
-router.get("/clients/:id", async (req, res) => {
-  const { id } = req.params;
-  const { rows } = await pool.query('SELECT * FROM login.clients WHERE id = $1', [id]);
+// checking if the client data is correct
+router.post("/clients/login", async (req, res) => {
+  const data = req.body;
 
-// If the client does not exist
-  if (rows.length === 0) {
-    return res.status(404).json({ message: "Client not found" });
-  }
+})
+
+// create a new client
+router.post("/clients", async (req, res) => {
+  const data = req.body;
+  const { rows } = await pool.query(
+    'INSERT INTO login.clients (name, password) VALUES ($1, $2) RETURNING *',
+    [data.name, data.password]);
+
   res.json(rows[0]);
 });
 
-// router.post("/clients", async (req, res) => {
-//   const data = req.body;
-//   const { rows } = await pool.query(
-//     'INSERT INTO login.clients (name, password) VALUES ($1, $2) RETURNING *',
-//     [data.name, data.password]);
+// router.get("/clients/:id", async (req, res) => {
+//   const { id } = req.params;
+//   const { rows } = await pool.query('SELECT * FROM login.clients WHERE id = $1', [id]);
 
+// If the client does not exist
+//   if (rows.length === 0) {
+//     return res.status(404).json({ message: "Client not found" });
+//   }
 //   res.json(rows[0]);
 // });
 
