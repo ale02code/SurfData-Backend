@@ -13,4 +13,6 @@ export const getSaleData = async (req, res) => {
 
   const { rows } = await pool.query(`SELECT * FROM sales.${tableName} WHERE id = $1`
     , [id]);
+
+  res.json(rows[0]);
 }

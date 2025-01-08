@@ -1,4 +1,5 @@
 import { pool } from "../db.js";
+import bcryptjs from 'bcryptjs';
 
 export const getClients = async (req, res) => {
   const { rows } = await pool.query('SELECT * FROM login.clients');
@@ -12,9 +13,12 @@ export const createClient = async (req, res) => {
     return res.status(400).json({ message: "Name and password are required" });
   }
 
+  const salt = await bcryptjs.genSalt(10);
+  const hashedPassword = await bcryptjs.hash(password, salt);
+
   const { rows } = await pool.query(
     'INSERT INTO login.clients (name, password) VALUES ($1, $2) RETURNING *',
-    [name.name, password.password]);
+    [name, hashedPassword]);
 
   res.json(rows[0]);
 }
