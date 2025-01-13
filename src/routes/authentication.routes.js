@@ -1,6 +1,5 @@
 import { Router } from "express";
-// byCript
-import { getClients, createClient, checkingData } from "../controllers/clients.controllers.js";
+import { getClients, createClient, checkingData } from "../controllers/authentication.controllers.js";
 
 const router = Router();
 
@@ -8,9 +7,9 @@ const router = Router();
 router.get("/clients", getClients);
 
 // create a new client
-router.post("/clients", createClient);
+router.post("/register", createClient);
 
 // checking if the client data is correct
-router.post("/clients/login", checkingData);
+router.post("/login", checkingData);
 
 export default router;
