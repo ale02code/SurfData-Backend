@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import { PORT } from './config.js';
 import authenticationRoutes from "./routes/authentication.routes.js";
+import salesRoutes from "./routes/sales.routes.js";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(authenticationRoutes);
+app.use(salesRoutes);
 
 app.listen(PORT);
 console.log('Server on port', PORT);

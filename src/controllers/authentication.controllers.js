@@ -1,7 +1,8 @@
-import e from "express";
 import { pool } from "../db.js";
 import bcryptjs from 'bcryptjs';
+import jwt from "jsonwebtoken"
 
+//todo eliminar
 export const getClients = async (req, res) => {
   const { rows } = await pool.query('SELECT * FROM login.clients');
   res.json(rows);
@@ -58,9 +59,19 @@ export const checkingData = async (req, res) => {
       });
     }
 
+    const token = jwt.sign({
+      name: userName
+    },
+      process.env.JWT_CODE,
+      {
+        expiresIn: "7d"
+      }
+    );
+
     res.status(200).json({
       status: "Success",
       message: `Usuario ${userName} autenticado.`,
+      token: token,
     });
   } catch (error) {
     console.error(`Error en la autenticación: ${e}`);
