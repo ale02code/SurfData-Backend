@@ -20,18 +20,14 @@ export const getSales = async (req, res) => {
 }
 
 export const createSale = async (req, res) => {
-  const { producto, precio, cantidad } = req.body
+  const { producto, precio, cantidad, tableName } = req.body
 
   try {
-    const nameClient = req.name;
-
-    const nameTable = nameClient.replace(" ", "").toLowerCase();
-
-    if (!nameClient || !producto || !precio || !cantidad) {
+    if (!tableName || !producto || !precio || !cantidad) {
       return res.status(500).json({ message: "Datos incompletos" });
     }
 
-    const { rows } = await pool.query(`INSERT INTO sales.${nameTable} (producto, precio, cantidad) VALUES ($1, $2, $3) RETURNING *`, [producto, precio, cantidad])
+    const { rows } = await pool.query(`INSERT INTO sales.${tableName} (producto, precio, cantidad) VALUES ($1, $2, $3) RETURNING *`, [producto, precio, cantidad])
 
     res.status(200).json(rows);
   } catch {
