@@ -11,12 +11,14 @@ export const verifyToken = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_CODE);
-    const companyToken = codeded.company;
-    const companyUrl = req.params.companyUrl;
+    // const companyToken = codeded.name;
+    const companyUrl = req.params;
 
-    if (companyToken !== companyUrl) {
-      res.status(403).json({ error: "Token does not match company" });
-    }
+    console.log(companyUrl);
+
+    // if (companyToken !== companyUrl) {
+    //   res.status(403).json({ error: "Token does not match company" });
+    // }
 
     next();
   } catch (error) {
