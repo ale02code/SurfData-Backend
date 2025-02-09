@@ -45,4 +45,4 @@ Este proyecto está licenciado bajo la [MIT License](./LICENSE).
 
 - **GitHub**: [ale02code](https://github.com/ale02code)
 - **Correo Electrónico**: [chchacon02@gmail.com](mailto:chchacon02@gmail.com)
-- **Instagram**: [ale02code](https://www.instagram.com/ale02.code/)
+- **Instagram**: [ale02code](https://www.instagram.com/ale02code/)

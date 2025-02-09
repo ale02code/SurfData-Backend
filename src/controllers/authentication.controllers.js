@@ -2,11 +2,6 @@ import { pool } from "../db.js";
 import bcryptjs from 'bcryptjs';
 import jwt from "jsonwebtoken"
 
-export const getClients = async (req, res) => {
-  const { rows } = await pool.query('SELECT * FROM login.clients');
-  res.json(rows);
-}
-
 export const createClient = async (req, res) => {
   const { name, password } = req.body;
 

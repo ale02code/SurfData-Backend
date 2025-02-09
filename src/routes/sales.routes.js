@@ -7,6 +7,7 @@ const router = Router();
 // getting all products
 router.get("/sales", verifyToken, getSales);
 
+// add new sale
 router.post("/newSale", createSale);
 
 export default router;
